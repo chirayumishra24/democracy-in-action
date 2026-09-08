@@ -95,7 +95,7 @@ export default function Header() {
           ❓
         </button>
         <button
-          className="header__settings-btn"
+          className="header__settings-btn header__fullscreen-btn"
           onClick={toggleFullscreen}
           title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
           aria-label={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
