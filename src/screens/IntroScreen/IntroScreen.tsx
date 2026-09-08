@@ -67,28 +67,29 @@ export default function IntroScreen() {
           <span className="intro-tagline__quote">"</span>
         </div>
 
-        {/* Village preview card */}
-        <div className="intro-screen__village-card">
-          <img src="/images/village-hero.jpg" alt="Sunderpur Village" className="intro-village__img" />
-          <div className="intro-village__info">
-            <span className="intro-village__label">Your Community</span>
-            <span className="intro-village__name">🏘️ Sunderpur Village</span>
+        {/* Middle row: Village preview card & Chapters */}
+        <div className="intro-screen__middle-row">
+          <div className="intro-screen__village-card">
+            <img src="/images/village-hero.jpg" alt="Sunderpur Village" className="intro-village__img" />
+            <div className="intro-village__info">
+              <span className="intro-village__label">Your Community</span>
+              <span className="intro-village__name">🏘️ Sunderpur Village</span>
+            </div>
           </div>
-        </div>
 
-        {/* Chapters */}
-        <div className="intro-screen__chapters">
-          <div className="intro-chapter">
-            <span className="intro-chapter__num">10</span>
-            <span>Grassroots Democracy — Part 1</span>
-          </div>
-          <div className="intro-chapter">
-            <span className="intro-chapter__num">11</span>
-            <span>Grassroots Democracy — Part 2</span>
-          </div>
-          <div className="intro-chapter">
-            <span className="intro-chapter__num">12</span>
-            <span>Grassroots Democracy — Part 3</span>
+          <div className="intro-screen__chapters">
+            <div className="intro-chapter">
+              <span className="intro-chapter__num">10</span>
+              <span>Grassroots Democracy — Part 1</span>
+            </div>
+            <div className="intro-chapter">
+              <span className="intro-chapter__num">11</span>
+              <span>Grassroots Democracy — Part 2</span>
+            </div>
+            <div className="intro-chapter">
+              <span className="intro-chapter__num">12</span>
+              <span>Grassroots Democracy — Part 3</span>
+            </div>
           </div>
         </div>
 
