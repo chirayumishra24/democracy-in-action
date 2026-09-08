@@ -3,8 +3,8 @@
   flex-direction: column;
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(248,250,252,0.96), rgba(241,245,249,0.94)),
-    url('/images/results-pattern.jpg') center/800px repeat;
+    linear-gradient(180deg, rgba(238, 242, 246, 0.75) 0%, rgba(226, 232, 240, 0.82) 100%),
+    url('/images/village-hero.jpg') center/cover no-repeat fixed;
   background-attachment: fixed;
 }
 
