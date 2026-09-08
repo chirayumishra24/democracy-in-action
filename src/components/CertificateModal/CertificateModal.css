@@ -1,0 +1,349 @@
+.certificate-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1.5rem;
+  overflow-y: auto;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.certificate-modal {
+  max-width: 860px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.certificate-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.btn-print {
+  background: #15803d;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 0.65rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-print:hover {
+  background: #166534;
+  transform: translateY(-2px);
+}
+
+.btn-close-cert {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-close-cert:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ─── Printable Document ─── */
+.certificate-document {
+  background: #fdfbf7;
+  color: #1c1917;
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  padding: 1rem;
+  position: relative;
+}
+
+.cert-border-outer {
+  border: 4px solid #b45309;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.cert-border-inner {
+  border: 2px solid #15803d;
+  padding: 2.25rem 2.5rem;
+  position: relative;
+  text-align: center;
+  background: radial-gradient(circle at center, #ffffff 40%, #fbf7ee 100%);
+}
+
+/* Corner Ornaments */
+.cert-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #b45309;
+}
+.cert-corner--tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.cert-corner--tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.cert-corner--bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.cert-corner--br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+/* ─── Header ─── */
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #b45309;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cert-emblem {
+  font-size: 2.75rem;
+  background: #fef3c7;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f59e0b;
+}
+
+.cert-authority h3 {
+  font-family: 'Georgia', serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #15803d;
+  margin: 0;
+}
+
+.cert-authority h4 {
+  font-family: 'Georgia', serif;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  color: #78350f;
+  margin: 3px 0;
+}
+
+.cert-motto {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #78716c;
+}
+
+.cert-id-tag {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #92400e;
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Body ─── */
+.cert-intro {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #57534e;
+  margin-bottom: 0.5rem;
+}
+
+.cert-recipient {
+  font-family: 'Georgia', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #1e3a8a;
+  margin: 0.25rem 0 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #f59e0b;
+}
+
+.cert-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  color: #292524;
+}
+
+/* Rank Banner */
+.cert-rank-banner {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: 999px;
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.rank-ribbon {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #15803d;
+}
+
+.rank-title {
+  font-family: 'Georgia', serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #065f46;
+  margin: 2px 0 0;
+}
+
+/* Achievements */
+.cert-achievements {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.achievement-pill {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  min-width: 120px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.achieve-val {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #15803d;
+}
+
+.achieve-label {
+  font-size: 0.7rem;
+  color: #78716c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Footer ─── */
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 1.25rem;
+  border-top: 1px solid #d6d3d1;
+}
+
+.cert-sig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+
+.sig-line {
+  font-family: 'Brush Script MT', cursive, 'Georgia', serif;
+  font-size: 1.35rem;
+  color: #1e3a8a;
+  border-bottom: 2px solid #292524;
+  width: 100%;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+}
+
+.cert-sig strong {
+  font-size: 0.8rem;
+  color: #1c1917;
+}
+
+.cert-sig span {
+  font-size: 0.7rem;
+  color: #78716c;
+}
+
+/* Official Seal */
+.cert-seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seal-ring {
+  width: 90px;
+  height: 90px;
+  border: 3px double #b45309;
+  border-radius: 50%;
+  background: #fffbeb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(180, 83, 9, 0.2);
+}
+
+.seal-ring span {
+  font-size: 0.5rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: 0.5px;
+}
+
+.seal-ring strong {
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #15803d;
+  line-height: 1.1;
+  margin: 2px 0;
+}
+
+/* ─── Print Styles ─── */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .certificate-backdrop,
+  .certificate-document,
+  .certificate-document * {
+    visibility: visible;
+  }
+  .certificate-backdrop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    padding: 0;
+  }
+  .certificate-modal {
+    max-width: 100%;
+    width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .certificate-document {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .cert-border-inner { padding: 1.25rem; }
+  .cert-header { flex-direction: column; gap: 0.5rem; }
+  .cert-recipient { font-size: 1.8rem; }
+  .cert-footer { flex-direction: column; align-items: center; gap: 1rem; }
+}

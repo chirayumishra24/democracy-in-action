@@ -296,6 +296,7 @@ export interface GameSettings {
   timerEnabled: boolean;
   soundEnabled: boolean;
   animationsEnabled: boolean;
+  language: 'en' | 'hi';
 }
 
 /* ─ Phase Info ─ */
@@ -380,6 +381,7 @@ export type GameAction =
   | { type: 'USE_HINT' }
   | { type: 'CLEAR_HINT' }
   | { type: 'TOGGLE_SETTING'; setting: keyof GameSettings }
+  | { type: 'SET_LANGUAGE'; language: 'en' | 'hi' }
   | { type: 'SET_SCORE_ANIMATION'; data: { team: TeamId; points: number } | null }
   | { type: 'EARN_IB_SKILL'; badge: IbSkillBadge }
   | { type: 'RESET_GAME' }

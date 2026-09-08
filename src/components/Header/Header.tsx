@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useGame } from '../../state/gameStore';
+import { t } from '../../utils/translations';
 import SettingsPanel from '../SettingsPanel/SettingsPanel';
 import InstructionsModal from '../InstructionsModal/InstructionsModal';
 import './Header.css';
@@ -18,11 +19,13 @@ function getCurrentStage(phase: string): number {
 }
 
 export default function Header() {
-  const { state } = useGame();
+  const { state, dispatch } = useGame();
   const [showSettings, setShowSettings] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const activeStage = getCurrentStage(state.gamePhase);
+  const lang = state.settings.language || 'en';
+  const isHindi = lang === 'hi';
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -46,8 +49,8 @@ export default function Header() {
         <div className="header__brand">
           <span className="header__icon" aria-hidden="true">🏛️</span>
           <div>
-            <h1 className="header__title">Democracy in Action</h1>
-            <p className="header__subtitle">People · Decisions · Real Change</p>
+            <h1 className="header__title">{t('appTitle', lang)}</h1>
+            <p className="header__subtitle">{t('appTagline', lang)}</p>
           </div>
         </div>
       </div>
@@ -66,9 +69,21 @@ export default function Header() {
       </nav>
 
       <div className="header__right">
+        {/* Bilingual Switcher */}
+        <button
+          className="header__lang-toggle"
+          onClick={() => dispatch({ type: 'SET_LANGUAGE', language: isHindi ? 'en' : 'hi' })}
+          title={isHindi ? 'Switch to English' : 'Switch to Hindi (हिन्दी)'}
+          aria-label="Toggle language"
+        >
+          <span className={!isHindi ? 'lang-active' : ''}>EN</span>
+          <span className="lang-sep">|</span>
+          <span className={isHindi ? 'lang-active' : ''}>हिं</span>
+        </button>
+
         {state.mode === 'team' && (
           <div className={`header__turn ${state.currentTeam === 'A' ? 'turn-a' : 'turn-b'}`}>
-            Round {state.round} · {state.teams[state.currentTeam].name}
+            {t('round', lang)} {state.round} · {state.teams[state.currentTeam].name}
           </div>
         )}
         <button

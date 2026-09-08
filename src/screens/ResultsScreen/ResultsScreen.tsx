@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { useGame } from '../../state/gameStore';
 import { getOverallProgress } from '../../utils/progressEngine';
 import { getNetworkProgress } from '../../utils/networkEngine';
 import CommunityMap from '../../components/CommunityMap/CommunityMap';
 import GovernanceNetwork from '../../components/GovernanceNetwork/GovernanceNetwork';
 import CommunityDashboard from '../../components/CommunityDashboard/CommunityDashboard';
+import CertificateModal from '../../components/CertificateModal/CertificateModal';
 import './ResultsScreen.css';
 
 export default function ResultsScreen() {
   const { state, dispatch } = useGame();
+  const [showCertificate, setShowCertificate] = useState(false);
   const overall = getOverallProgress(state.community);
   const networkProg = getNetworkProgress(state.governanceNetwork);
 
@@ -127,13 +130,25 @@ export default function ResultsScreen() {
 
       {/* Actions */}
       <div className="results-actions">
-        <button className="btn btn-primary btn-large" onClick={() => dispatch({ type: 'RESET_GAME' })}>
+        <button
+          className="btn btn-primary btn-large btn-claim-cert"
+          onClick={() => setShowCertificate(true)}
+          style={{ background: '#15803d', borderColor: '#166534' }}
+        >
+          🎓 Claim & Print Civic Certificate
+        </button>
+        <button className="btn btn-secondary btn-large" onClick={() => dispatch({ type: 'RESET_GAME' })}>
           🔄 Play Again
         </button>
         <button className="btn btn-secondary" onClick={() => dispatch({ type: 'SET_PHASE', phase: 'intro' })}>
           🏠 Back to Start
         </button>
       </div>
+
+      {/* Printable Certificate Modal */}
+      {showCertificate && (
+        <CertificateModal onClose={() => setShowCertificate(false)} />
+      )}
 
       {/* Key takeaways */}
       <div className="results-takeaways">

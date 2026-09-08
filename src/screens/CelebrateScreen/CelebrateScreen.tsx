@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useGame } from '../../state/gameStore';
 import { playSound } from '../../utils/audio';
+import VillageComparison from '../../components/VillageComparison/VillageComparison';
 import './CelebrateScreen.css';
 
 export default function CelebrateScreen() {
@@ -34,6 +35,9 @@ export default function CelebrateScreen() {
         <div className="celebrate-icon">🎉</div>
         <h1 className="celebrate-title">Amazing Work!</h1>
         <p className="celebrate-sub">You completed all governance phases in Sunderpur!</p>
+
+        {/* Before vs After Interactive Village Transformation */}
+        <VillageComparison />
 
         <div className="celebrate-scores">
           {state.mode === 'team' ? (

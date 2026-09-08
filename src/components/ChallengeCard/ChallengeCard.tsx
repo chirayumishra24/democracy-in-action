@@ -5,6 +5,7 @@ import { calculatePoints, calculatePartialPoints } from '../../utils/scoring';
 import { playSound } from '../../utils/audio';
 import Timer from '../Timer/Timer';
 import CharacterDialogue from '../CharacterDialogue/CharacterDialogue';
+import TreasurySimulator from '../TreasurySimulator/TreasurySimulator';
 import './ChallengeCard.css';
 
 interface Props {
@@ -455,32 +456,17 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
         </div>
       )}
 
-      {/* ─── RESOURCE ─── */}
+      {/* ─── RESOURCE / TREASURY ALLOCATION ─── */}
       {challenge.type === 'resource' && (
         <div className="challenge-card__body">
-          <div className="resource-budget">
-            <div className="resource-budget__header">
-              <span>Budget: {challenge.totalPoints} Community Points</span>
-              <span className={`resource-budget__used ${resourceTotal > challenge.totalPoints ? 'resource-budget__used--over' : ''}`}>
-                Used: {resourceTotal} / {challenge.totalPoints}
-              </span>
-            </div>
-            {challenge.needs.map(n => (
-              <div key={n.id} className="resource-need">
-                <div className="resource-need__header">
-                  <span>{n.emoji} {n.label}</span>
-                  <span className="resource-need__range">Min: {n.minimum} | Requested: {n.requested}</span>
-                </div>
-                <input type="range" min={0} max={n.requested + 5} value={distribution[n.id] || 0}
-                  onChange={e => handleDistChange(n.id, parseInt(e.target.value))} disabled={answered}
-                  className="resource-need__slider" />
-                <span className="resource-need__value">{distribution[n.id] || 0}</span>
-              </div>
-            ))}
-          </div>
-          {!answered && resourceTotal <= challenge.totalPoints && resourceTotal > 0 && (
-            <button className="btn btn-primary" onClick={handleResourceSubmit}>Submit Allocation</button>
-          )}
+          <TreasurySimulator
+            totalPoints={challenge.totalPoints}
+            needs={challenge.needs}
+            distribution={distribution}
+            onDistChange={handleDistChange}
+            onSubmit={handleResourceSubmit}
+            disabled={answered}
+          />
         </div>
       )}
 

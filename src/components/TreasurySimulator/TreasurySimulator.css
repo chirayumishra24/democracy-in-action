@@ -1,0 +1,289 @@
+.treasury-simulator {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: fadeIn 0.3s var(--ease-out);
+}
+
+/* ─── Vault Header ─── */
+.treasury-vault {
+  background: linear-gradient(135deg, #1e3a8a, #0f172a);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+}
+
+.treasury-vault__info {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.treasury-vault__icon {
+  font-size: 2.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.treasury-vault__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: #f8fafc;
+}
+
+.treasury-vault__subtitle {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.treasury-vault__stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.treasury-stat {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.treasury-stat__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+}
+
+.treasury-stat__val {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.treasury-stat--success .treasury-stat__val {
+  color: #4ade80;
+}
+
+.treasury-stat--danger {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+.treasury-stat--danger .treasury-stat__val {
+  color: #fca5a5;
+}
+
+/* ─── Progress Track ─── */
+.treasury-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.treasury-bar-track {
+  height: 10px;
+  background: var(--border-light);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.treasury-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 999px;
+}
+
+.treasury-bar-fill--over {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.treasury-bar-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ─── Needs Cards ─── */
+.treasury-needs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.treasury-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.treasury-card--valid {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.treasury-card--warning {
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+
+.treasury-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.treasury-card__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.treasury-card__emoji {
+  font-size: 1.8rem;
+}
+
+.treasury-card__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 2px;
+  color: var(--text);
+}
+
+.treasury-card__req {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.treasury-card__amount {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.amount-pts {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.amount-inr {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ─── Slider ─── */
+.treasury-slider-row {
+  display: flex;
+  align-items: center;
+}
+
+.treasury-slider {
+  width: 100%;
+  accent-color: #15803d;
+  cursor: pointer;
+  height: 6px;
+}
+
+/* ─── Reaction / Feedback ─── */
+.treasury-reaction {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reaction-progress {
+  height: 4px;
+  background: var(--border-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.reaction-progress__bar {
+  height: 100%;
+  background: #10b981;
+  transition: width 0.2s ease;
+}
+
+.reaction-feedback {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.reaction-success {
+  color: #15803d;
+}
+
+.reaction-alert {
+  color: #b45309;
+}
+
+/* ─── Actions & Alerts ─── */
+.treasury-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.treasury-alert-box {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.treasury-alert-box--info {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.treasury-alert-box--success {
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #86efac;
+}
+
+.treasury-submit-btn {
+  width: 100%;
+  max-width: 440px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}

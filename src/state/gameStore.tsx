@@ -75,7 +75,7 @@ const initialState: GameState = {
   timer: 45,
   maxTimer: 45,
   hintUsed: false,
-  settings: { timerEnabled: true, soundEnabled: true, animationsEnabled: true },
+  settings: { timerEnabled: true, soundEnabled: true, animationsEnabled: true, language: 'en' },
   completedPhases: [],
   exploredLocations: [],
   metPeople: [],
@@ -196,6 +196,9 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'TOGGLE_SETTING':
       return { ...state, settings: { ...state.settings, [action.setting]: !state.settings[action.setting] } as GameSettings };
+
+    case 'SET_LANGUAGE':
+      return { ...state, settings: { ...state.settings, language: action.language } };
 
     case 'SET_SCORE_ANIMATION':
       return { ...state, scoreAnimation: action.data };
