@@ -10,6 +10,7 @@ import CommunityMap from '../../components/CommunityMap/CommunityMap';
 import ChallengeCard from '../../components/ChallengeCard/ChallengeCard';
 import GovernanceNetwork from '../../components/GovernanceNetwork/GovernanceNetwork';
 import CommunityDashboard from '../../components/CommunityDashboard/CommunityDashboard';
+import NewspaperModal from '../../components/NewspaperModal/NewspaperModal';
 import './PhaseScreen.css';
 
 const phaseIntros: Record<GovernancePhase, { title: string; emoji: string; description: string; instruction: string }> = {
@@ -60,6 +61,8 @@ const phaseIntros: Record<GovernancePhase, { title: string; emoji: string; descr
 export default function PhaseScreen() {
   const { state, dispatch } = useGame();
   const [showChallenge, setShowChallenge] = useState(false);
+  const [showNewspaper, setShowNewspaper] = useState(false);
+  const [newspaperPhase, setNewspaperPhase] = useState<GovernancePhase>(state.phase);
   const phase = state.phase;
   const intro = phaseIntros[phase];
   const phaseInfo = phases.find(p => p.id === phase);
@@ -113,16 +116,21 @@ export default function PhaseScreen() {
   const handleCompletePhase = useCallback(() => {
     dispatch({ type: 'COMPLETE_PHASE', phase });
     playSound('celebration', state.settings.soundEnabled);
+    setNewspaperPhase(phase);
+    setShowNewspaper(true);
+  }, [dispatch, phase, state.settings.soundEnabled]);
 
+  const handleCloseNewspaper = useCallback(() => {
+    setShowNewspaper(false);
     // Auto-advance to next phase
     const order: GovernancePhase[] = ['explore', 'people', 'gramSabha', 'decision', 'implement', 'monitor', 'final'];
-    const idx = order.indexOf(phase);
+    const idx = order.indexOf(newspaperPhase);
     if (idx < order.length - 1) {
       dispatch({ type: 'SET_GOVERNANCE_PHASE', phase: order[idx + 1] });
     } else {
       dispatch({ type: 'SET_PHASE', phase: 'celebrate' });
     }
-  }, [dispatch, phase, state.settings.soundEnabled]);
+  }, [dispatch, newspaperPhase]);
 
   const isPhaseComplete = state.completedPhases.includes(phase);
 
@@ -214,6 +222,11 @@ export default function PhaseScreen() {
         <GovernanceNetwork />
         <CommunityDashboard />
       </div>
+
+      {/* Milestone Newspaper Flash */}
+      {showNewspaper && (
+        <NewspaperModal phase={newspaperPhase} onClose={handleCloseNewspaper} />
+      )}
     </GameShell>
   );
 }

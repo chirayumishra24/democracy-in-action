@@ -17,13 +17,60 @@ export default function CommunityDashboard() {
     { label: 'Wellbeing', value: ind.communityWellbeing, emoji: '🤝', color: 'var(--token-community)' },
   ];
 
+  const getTier = (val: number) => {
+    if (val >= 75) return { title: 'Vibrant Model Panchayat', badge: '🌟', color: '#15803d' };
+    if (val >= 45) return { title: 'Active Democratic Village', badge: '🌿', color: '#b45309' };
+    return { title: 'Emerging Civic Trust', badge: '🌱', color: '#4338ca' };
+  };
+
+  const tier = getTier(overall);
+  const arcLength = 126; // approx half-circumference for r=40
+  const strokeOffset = arcLength - (arcLength * Math.min(100, Math.max(0, overall))) / 100;
+
   return (
     <div className="community-dashboard" role="region" aria-label="Community indicators">
       <div className="community-dashboard__header">
-        <h3>📊 Community Dashboard</h3>
-        <div className="community-dashboard__overall">
-          <span className="community-dashboard__overall-value">{overall}%</span>
-          <span className="community-dashboard__overall-label">Overall</span>
+        <div>
+          <h3>📊 Civic Health Gauge</h3>
+          <span className="community-tier-badge" style={{ color: tier.color }}>
+            {tier.badge} {tier.title}
+          </span>
+        </div>
+      </div>
+
+      {/* SVG Radial Speedometer Arc */}
+      <div className="civic-speedometer">
+        <svg viewBox="0 0 100 62" className="speedometer-svg">
+          <defs>
+            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#f59e0b" />
+              <stop offset="50%" stopColor="#10b981" />
+              <stop offset="100%" stopColor="#059669" />
+            </linearGradient>
+          </defs>
+          {/* Background Arc */}
+          <path
+            d="M 10 50 A 40 40 0 0 1 90 50"
+            fill="none"
+            stroke="var(--border-light)"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+          {/* Progress Filled Arc */}
+          <path
+            d="M 10 50 A 40 40 0 0 1 90 50"
+            fill="none"
+            stroke="url(#gaugeGradient)"
+            strokeWidth="8"
+            strokeDasharray={arcLength}
+            strokeDashoffset={strokeOffset}
+            strokeLinecap="round"
+            className="speedometer-arc"
+          />
+        </svg>
+        <div className="speedometer-center">
+          <span className="speedometer-value">{overall}%</span>
+          <span className="speedometer-label">Civic Health</span>
         </div>
       </div>
 

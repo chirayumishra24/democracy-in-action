@@ -19,11 +19,24 @@ export default function GovernanceNetwork() {
           const from = nodes.find(n => n.id === c.from);
           const to = nodes.find(n => n.id === c.to);
           if (!from || !to) return null;
+          const isLive = c.animated || (from.activated && to.activated);
           return (
-            <line key={i} x1={from.x} y1={from.y} x2={to.x} y2={to.y}
-              stroke="var(--primary-lighter)" strokeWidth="1.5"
-              strokeDasharray={c.animated ? '0' : '4,4'} opacity={c.animated ? 1 : 0.4}
-              className={c.animated ? 'network-line--animated' : ''} />
+            <g key={i}>
+              <line x1={from.x} y1={from.y} x2={to.x} y2={to.y}
+                stroke={isLive ? 'var(--primary-light)' : 'var(--border)'}
+                strokeWidth={isLive ? '2' : '1.5'}
+                strokeDasharray={isLive ? '0' : '4,4'}
+                opacity={isLive ? 0.9 : 0.4}
+              />
+              {isLive && (
+                <line x1={from.x} y1={from.y} x2={to.x} y2={to.y}
+                  stroke="#34d399"
+                  strokeWidth="2.5"
+                  strokeDasharray="4, 12"
+                  className="network-pulse-flow"
+                />
+              )}
+            </g>
           );
         })}
         {/* Nodes */}

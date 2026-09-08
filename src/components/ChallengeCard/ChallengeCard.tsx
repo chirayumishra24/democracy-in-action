@@ -4,6 +4,7 @@ import type { Challenge, TeamId } from '../../types/game';
 import { calculatePoints, calculatePartialPoints } from '../../utils/scoring';
 import { playSound } from '../../utils/audio';
 import Timer from '../Timer/Timer';
+import CharacterDialogue from '../CharacterDialogue/CharacterDialogue';
 import './ChallengeCard.css';
 
 interface Props {
@@ -328,16 +329,13 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
         <div className="challenge-card__body">
           <div className="viewpoints-list">
             {challenge.viewpoints.map(v => (
-              <div key={v.personId} className="viewpoint-card">
-                <div className="viewpoint-card__header">
-                  <span className="viewpoint-card__emoji">{v.emoji}</span>
-                  <div>
-                    <strong>{v.name}</strong>
-                    <span className="viewpoint-card__role">{v.role}</span>
-                  </div>
-                </div>
-                <p className="viewpoint-card__text">"{v.perspective}"</p>
-              </div>
+              <CharacterDialogue
+                key={v.personId}
+                name={v.name}
+                role={v.role}
+                emoji={v.emoji}
+                speech={v.perspective}
+              />
             ))}
           </div>
           {challenge.questions[currentQ] && (
@@ -364,10 +362,13 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
         <div className="challenge-card__body">
           <div className="viewpoints-list">
             {challenge.viewpoints.map((v, i) => (
-              <div key={i} className="viewpoint-card viewpoint-card--compact">
-                <span>{v.emoji}</span>
-                <div><strong>{v.name}:</strong> "{v.position}"</div>
-              </div>
+              <CharacterDialogue
+                key={i}
+                name={v.name}
+                role="Villager"
+                emoji={v.emoji}
+                speech={v.position}
+              />
             ))}
           </div>
           <p className="challenge-card__question">{challenge.issue}</p>
@@ -431,10 +432,13 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
             </div>
             <div className="viewpoints-list">
               {challenge.otherViewpoints.map((v, i) => (
-                <div key={i} className="viewpoint-card viewpoint-card--compact">
-                  <span>{v.emoji}</span>
-                  <div><strong>{v.name}:</strong> "{v.position}"</div>
-                </div>
+                <CharacterDialogue
+                  key={i}
+                  name={v.name}
+                  role="Stakeholder"
+                  emoji={v.emoji}
+                  speech={v.position}
+                />
               ))}
             </div>
           </div>
@@ -705,6 +709,16 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
           ) : (
             <button className="btn btn-success" onClick={onComplete}>Continue →</button>
           )}
+        </div>
+      )}
+
+      {/* ─── Gavel Stamp Overlay on Resolution Approval ─── */}
+      {answered && isCorrect && (
+        <div className="gavel-stamp-overlay" aria-hidden="true">
+          <div className="gavel-stamp">
+            <span className="gavel-stamp__icon">⚖️</span>
+            <span className="gavel-stamp__text">APPROVED IN GRAM SABHA</span>
+          </div>
         </div>
       )}
     </div>
