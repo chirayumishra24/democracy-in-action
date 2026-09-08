@@ -3,6 +3,7 @@ import { useGame } from '../../state/gameStore';
 import { t } from '../../utils/translations';
 import SettingsPanel from '../SettingsPanel/SettingsPanel';
 import InstructionsModal from '../InstructionsModal/InstructionsModal';
+import SmartBoardPen from '../SmartBoardPen/SmartBoardPen';
 import './Header.css';
 
 const stageLabels = [
@@ -22,6 +23,7 @@ export default function Header() {
   const { state, dispatch } = useGame();
   const [showSettings, setShowSettings] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
+  const [showPen, setShowPen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const activeStage = getCurrentStage(state.gamePhase);
   const lang = state.settings.language || 'en';
@@ -95,6 +97,14 @@ export default function Header() {
           ❓
         </button>
         <button
+          className={`header__settings-btn ${showPen ? 'header__pen-btn--active' : ''}`}
+          onClick={() => setShowPen(!showPen)}
+          title={showPen ? 'Close Smart Board Pen' : 'Open Smart Board Pen (✏️)'}
+          aria-label="Toggle Smart Board Pen"
+        >
+          ✏️
+        </button>
+        <button
           className="header__settings-btn header__fullscreen-btn"
           onClick={toggleFullscreen}
           title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
@@ -114,6 +124,7 @@ export default function Header() {
 
       {showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />}
       {showInstructions && <InstructionsModal onClose={() => setShowInstructions(false)} />}
+      {showPen && <SmartBoardPen onClose={() => setShowPen(false)} />}
     </header>
   );
 }

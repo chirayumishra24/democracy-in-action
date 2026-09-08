@@ -11,6 +11,7 @@ import ChallengeCard from '../../components/ChallengeCard/ChallengeCard';
 import GovernanceNetwork from '../../components/GovernanceNetwork/GovernanceNetwork';
 import CommunityDashboard from '../../components/CommunityDashboard/CommunityDashboard';
 import NewspaperModal from '../../components/NewspaperModal/NewspaperModal';
+import GramSabhaVoteSim from '../../components/GramSabhaVoteSim/GramSabhaVoteSim';
 import './PhaseScreen.css';
 
 const phaseIntros: Record<GovernancePhase, { title: string; emoji: string; description: string; instruction: string }> = {
@@ -55,6 +56,51 @@ const phaseIntros: Record<GovernancePhase, { title: string; emoji: string; descr
     emoji: '🌟',
     description: 'Look at the impact of your governance journey and reflect on what you learned.',
     instruction: 'Compare before and after, then share your thoughts.',
+  },
+};
+
+const phaseHeroBanners: Record<GovernancePhase, { img: string; badge: string; heading: string; desc: string }> = {
+  explore: {
+    img: '/images/map-background.jpg',
+    badge: '🗺️ Community Needs Discovery',
+    heading: 'Exploring Sunderpur Community',
+    desc: 'Investigate key village spots to uncover water shortages, school mud, and clinic needs.',
+  },
+  people: {
+    img: '/images/village-hero.jpg',
+    badge: '👥 Diverse Citizen Voices',
+    heading: 'Meeting the Villagers of Sunderpur',
+    desc: 'Every voice matters — listen to small farmers, elders, women artisans, and shopkeepers.',
+  },
+  gramSabha: {
+    img: '/images/gram-sabha.jpg',
+    badge: '🏛️ Direct Grassroots Democracy',
+    heading: 'Gram Sabha Assembly under Banyan Tree',
+    desc: 'All adult citizens (18+) gather to review village priorities and hold representatives accountable.',
+  },
+  decision: {
+    img: '/images/sunderpur-before.jpg',
+    badge: '⚖️ 3-Tier Panchayati Raj Architecture',
+    heading: 'Panchayat Council & Democratic Routing',
+    desc: 'Route community demands to the Gram Panchayat, Panchayat Samiti, or Zilla Parishad.',
+  },
+  implement: {
+    img: '/images/sunderpur-after.jpg',
+    badge: '🔧 Public Action & Works',
+    heading: 'Executing Village Transformation',
+    desc: 'Turn resolutions into reality: install solar streetlights, pave access roads, and lay clean water pipes.',
+  },
+  monitor: {
+    img: '/images/sunderpur-before.jpg',
+    badge: '📋 Social Audit & Civic Inspection',
+    heading: 'Transparency & Accountability Review',
+    desc: 'Citizens inspect public project quality, check budget records, and ensure promises were fulfilled.',
+  },
+  final: {
+    img: '/images/celebration-bg.jpg',
+    badge: '🌟 Vibrant Model Panchayat',
+    heading: 'Sunderpur Transformed by Civic Action',
+    desc: 'Reflect on how active citizen participation powers true democratic wellbeing.',
   },
 };
 
@@ -182,17 +228,17 @@ export default function PhaseScreen() {
           {phase !== 'explore' && (
             <div className="phase-content">
               <div className="phase-stage-card">
-                {phase === 'gramSabha' && (
+                {phaseHeroBanners[phase] && (
                   <div className="phase-stage-card__hero-img-wrap">
                     <img
-                      src="/images/gram-sabha.jpg"
-                      alt="Gram Sabha Meeting under the Banyan Tree"
+                      src={phaseHeroBanners[phase].img}
+                      alt={phaseHeroBanners[phase].heading}
                       className="phase-stage-card__hero-img"
                     />
                     <div className="phase-stage-card__img-overlay">
-                      <span className="phase-stage-card__badge">🏛️ Direct Grassroots Democracy</span>
-                      <h3>Gram Sabha Assembly</h3>
-                      <p>All adult citizens (18+) gather to review village priorities and hold representatives accountable.</p>
+                      <span className="phase-stage-card__badge">{phaseHeroBanners[phase].badge}</span>
+                      <h3>{phaseHeroBanners[phase].heading}</h3>
+                      <p>{phaseHeroBanners[phase].desc}</p>
                     </div>
                   </div>
                 )}
@@ -212,6 +258,7 @@ export default function PhaseScreen() {
                   )}
                 </div>
               </div>
+              {phase === 'gramSabha' && <GramSabhaVoteSim />}
             </div>
           )}
         </>

@@ -21,6 +21,59 @@
   animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.certificate-inputs {
+  display: flex;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  flex-wrap: wrap;
+}
+
+.cert-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 220px;
+}
+
+.cert-input-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fde68a;
+}
+
+.cert-input-group input {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.cert-input-group input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3);
+}
+
+.cert-school-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #d97706;
+  margin: -0.25rem 0 0.75rem;
+  font-family: var(--font-sans, system-ui);
+}
+
 .certificate-controls {
   display: flex;
   justify-content: flex-end;

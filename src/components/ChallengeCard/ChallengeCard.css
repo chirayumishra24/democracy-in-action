@@ -19,7 +19,44 @@
   flex-wrap: wrap;
   gap: var(--space-sm);
 }
-.challenge-card__meta { display: flex; gap: var(--space-xs); flex-wrap: wrap; }
+.challenge-card__meta { 
+  display: flex; 
+  gap: var(--space-xs); 
+  flex-wrap: wrap; 
+  align-items: center;
+}
+
+.btn-challenge-tts {
+  background: rgba(30, 58, 138, 0.08);
+  border: 1px solid rgba(30, 58, 138, 0.2);
+  color: var(--primary-dark, #1e3a8a);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-challenge-tts:hover {
+  background: rgba(30, 58, 138, 0.16);
+  transform: translateY(-1px);
+}
+
+.btn-challenge-tts--active {
+  background: #fef08a;
+  border-color: #eab308;
+  color: #854d0e;
+  animation: ttsPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes ttsPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.4); }
+  50% { transform: scale(1.04); box-shadow: 0 0 0 6px rgba(234, 179, 8, 0); }
+}
 
 .challenge-card__title {
   font-size: var(--text-2xl);

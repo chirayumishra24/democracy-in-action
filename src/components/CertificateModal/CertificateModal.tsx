@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useGame } from '../../state/gameStore';
 import './CertificateModal.css';
 
@@ -8,10 +9,13 @@ interface CertificateModalProps {
 export default function CertificateModal({ onClose }: CertificateModalProps) {
   const { state } = useGame();
 
-  const recipientName =
+  const defaultRecipient =
     state.mode === 'team'
       ? `${state.teams.A.name} & ${state.teams.B.name}`
       : state.teams.A.name || 'Dedicated Student Citizen';
+
+  const [recipientName, setRecipientName] = useState(defaultRecipient);
+  const [schoolName, setSchoolName] = useState('Kendriya Vidyalaya · Grade 6 Social Science');
 
   const totalScore = state.scores.A + (state.mode === 'team' ? state.scores.B : 0);
   const totalTokens =
@@ -33,6 +37,30 @@ export default function CertificateModal({ onClose }: CertificateModalProps) {
   return (
     <div className="certificate-backdrop" role="dialog" aria-modal="true" aria-labelledby="cert-title">
       <div className="certificate-modal">
+        {/* Customization Bar */}
+        <div className="certificate-inputs no-print">
+          <div className="cert-input-group">
+            <label htmlFor="student-name-input">Student / Team Name:</label>
+            <input
+              id="student-name-input"
+              type="text"
+              value={recipientName}
+              onChange={e => setRecipientName(e.target.value)}
+              placeholder="Enter student or team name"
+            />
+          </div>
+          <div className="cert-input-group">
+            <label htmlFor="school-name-input">School / Class Section:</label>
+            <input
+              id="school-name-input"
+              type="text"
+              value={schoolName}
+              onChange={e => setSchoolName(e.target.value)}
+              placeholder="e.g. KV Sector 4, Class 6-B"
+            />
+          </div>
+        </div>
+
         {/* Print / Close Control Bar */}
         <div className="certificate-controls no-print">
           <button className="btn btn-primary btn-print" onClick={handlePrint}>
@@ -71,6 +99,7 @@ export default function CertificateModal({ onClose }: CertificateModalProps) {
               <div className="cert-body">
                 <p className="cert-intro">This is officially presented to</p>
                 <h1 className="cert-recipient">{recipientName}</h1>
+                {schoolName && <h3 className="cert-school-name">{schoolName}</h3>}
                 <p className="cert-text">
                   in recognition of exemplary leadership, participatory inquiry, and democratic problem-solving in
                   the historic model village of <strong>Sunderpur</strong>.

@@ -6,6 +6,7 @@ import { playSound } from '../../utils/audio';
 import Timer from '../Timer/Timer';
 import CharacterDialogue from '../CharacterDialogue/CharacterDialogue';
 import TreasurySimulator from '../TreasurySimulator/TreasurySimulator';
+import { speakText, stopSpeaking } from '../../utils/speechEngine';
 import './ChallengeCard.css';
 
 interface Props {
@@ -27,8 +28,22 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
   const [selectedIssues, setSelectedIssues] = useState<string[]>([]);
   const [reflectionAnswers, setReflectionAnswers] = useState<Record<string, string>>({});
   const [timerRunning, setTimerRunning] = useState(true);
+  const [isSpeakingText, setIsSpeakingText] = useState(false);
 
   const team = state.currentTeam;
+
+  const toggleSpeak = () => {
+    if (isSpeakingText) {
+      stopSpeaking();
+      setIsSpeakingText(false);
+    } else {
+      setIsSpeakingText(true);
+      const textToSpeak = `${challenge.title}. ${challenge.prompt}`;
+      speakText(textToSpeak, state.settings.language === 'hi' ? 'hi' : 'en', () => {
+        setIsSpeakingText(false);
+      });
+    }
+  };
 
   const resetTimer = useCallback(() => {
     dispatch({ type: 'SET_TIMER', time: state.maxTimer });
@@ -278,6 +293,15 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
           <span className="badge badge-primary">{challenge.difficulty}</span>
           <span className="badge badge-warning">{challenge.points} pts</span>
           {challenge.ibSkill && <span className="badge badge-success">{challenge.ibSkill}</span>}
+          <button 
+            type="button"
+            className={`btn-challenge-tts ${isSpeakingText ? 'btn-challenge-tts--active' : ''}`}
+            onClick={toggleSpeak}
+            title={isSpeakingText ? "Stop Reading" : "Read Question Aloud (TTS)"}
+            aria-label="Read Question Aloud"
+          >
+            {isSpeakingText ? '⏹️ Stop' : '🔊 Read Aloud'}
+          </button>
         </div>
         <Timer onTimeUp={handleTimeUp} running={timerRunning && !answered} />
       </div>
