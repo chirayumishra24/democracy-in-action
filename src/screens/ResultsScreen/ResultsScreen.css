@@ -46,7 +46,8 @@
   color: var(--primary);
 }
 
-.results-card--map {
+.results-card--map,
+.results-card--full {
   grid-column: 1 / -1;
 }
 

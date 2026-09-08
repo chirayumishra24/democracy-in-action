@@ -1,31 +1,51 @@
 .governance-network {
   background: var(--surface);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  border: 1.5px solid var(--border);
+  border-top: 3.5px solid #2563eb;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative ambient backdrop */
+.governance-network::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ─── Header ─── */
 .governance-network__header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1;
 }
 
 .governance-network__header h3 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
   margin: 0 0 2px;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .governance-network__subtitle {
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   margin: 0;
 }
@@ -35,14 +55,15 @@
   flex-direction: column;
   align-items: center;
   background: #f0fdf4;
-  border: 1px solid #86efac;
-  border-radius: 8px;
-  padding: 2px 8px;
+  border: 1.5px solid #86efac;
+  border-radius: 10px;
+  padding: 3px 10px;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.1);
 }
 
 .network-progress-number {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 900;
   color: #15803d;
   line-height: 1;
@@ -53,7 +74,16 @@
   color: #166534;
   text-transform: uppercase;
   font-weight: 700;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
+}
+
+/* ─── Horizontal Split Body ─── */
+.governance-network__body {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  z-index: 1;
 }
 
 /* ─── SVG Canvas ─── */
@@ -62,12 +92,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0.25rem 0;
 }
 
 .governance-network__svg {
   width: 100%;
-  max-width: 320px;
+  max-width: 310px;
   height: auto;
   overflow: visible;
 }
@@ -143,16 +172,16 @@
   }
 }
 
-/* ─── Node Detail Description Card ─── */
+/* ─── Node Detail Description Card (Right Column) ─── */
 .node-detail-card {
-  background: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 0.85rem 1rem;
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.35rem;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  gap: 0.6rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   animation: fadeIn 0.2s ease-out;
 }
 
@@ -165,21 +194,21 @@
 }
 
 .node-detail-card__step-badge {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--primary);
   background: #eff6ff;
   border: 1px solid #bfdbfe;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 999px;
 }
 
 .node-status-pill {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 999px;
 }
 
@@ -196,27 +225,28 @@
 }
 
 .node-detail-card__title {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--text);
   margin: 0;
 }
 
 .node-detail-card__desc {
-  font-size: 0.8rem;
-  line-height: 1.45;
+  font-size: 0.84rem;
+  line-height: 1.48;
   color: #334155;
   margin: 0;
 }
 
 .node-detail-card__role {
   background: #ffffff;
-  border-left: 3px solid #3b82f6;
-  border-radius: 0 6px 6px 0;
-  padding: 0.45rem 0.65rem;
-  font-size: 0.76rem;
-  line-height: 1.4;
+  border-left: 3.5px solid #2563eb;
+  border-radius: 0 8px 8px 0;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
   color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .node-detail-card__role strong {
@@ -226,28 +256,85 @@
 .node-detail-card__footer {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   margin-top: 2px;
-  padding-top: 4px;
+  padding-top: 6px;
   border-top: 1px dashed #e2e8f0;
 }
 
 .ncert-tag {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: #059669;
 }
 
 .interactive-hint {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
   font-style: italic;
 }
 
+/* ─── Quick-Step Interactive Bar ─── */
+.node-step-switcher {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 6px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.node-step-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.node-step-chip:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  transform: translateY(-1px);
+}
+
+.node-step-chip--active {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+
+.node-step-chip--live {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.node-step-chip__num {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 860px) {
+  .governance-network__body {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 640px) {
-  .governance-network { padding: 0.85rem; }
+  .governance-network { padding: 1rem; }
   .governance-network__svg { max-width: 260px; }
-  .node-detail-card { padding: 0.75rem; }
+  .node-detail-card { padding: 0.85rem; }
 }
 
 /* ─── Smart Board & Large Interactive Classroom Displays (65"+ IFP) ─── */

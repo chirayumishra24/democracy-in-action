@@ -120,10 +120,10 @@ export default function ResultsScreen() {
         </div>
 
         {/* Network & Dashboard */}
-        <div className="results-card">
+        <div className="results-card results-card--full">
           <GovernanceNetwork />
         </div>
-        <div className="results-card">
+        <div className="results-card results-card--full">
           <CommunityDashboard />
         </div>
       </div>

@@ -32,70 +32,82 @@ export default function CommunityDashboard() {
       <div className="community-dashboard__header">
         <div>
           <h3>📊 Civic Health Gauge</h3>
-          <span className="community-tier-badge" style={{ color: tier.color }}>
-            {tier.badge} {tier.title}
-          </span>
+          <p className="community-dashboard__subtitle">Real-time democratic health & village indicator telemetry</p>
         </div>
+        <span className="community-tier-badge" style={{ color: tier.color }}>
+          {tier.badge} {tier.title}
+        </span>
       </div>
 
-      {/* SVG Radial Speedometer Arc */}
-      <div className="civic-speedometer">
-        <svg viewBox="0 0 100 62" className="speedometer-svg">
-          <defs>
-            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#f59e0b" />
-              <stop offset="50%" stopColor="#10b981" />
-              <stop offset="100%" stopColor="#059669" />
-            </linearGradient>
-          </defs>
-          {/* Background Arc */}
-          <path
-            d="M 10 50 A 40 40 0 0 1 90 50"
-            fill="none"
-            stroke="var(--border-light)"
-            strokeWidth="8"
-            strokeLinecap="round"
-          />
-          {/* Progress Filled Arc */}
-          <path
-            d="M 10 50 A 40 40 0 0 1 90 50"
-            fill="none"
-            stroke="url(#gaugeGradient)"
-            strokeWidth="8"
-            strokeDasharray={arcLength}
-            strokeDashoffset={strokeOffset}
-            strokeLinecap="round"
-            className="speedometer-arc"
-          />
-        </svg>
-        <div className="speedometer-center">
-          <span className="speedometer-value">{overall}%</span>
-          <span className="speedometer-label">Civic Health</span>
-        </div>
-      </div>
-
-      <div className="community-dashboard__grid">
-        {indicators.map(i => (
-          <div key={i.label} className="indicator-bar">
-            <div className="indicator-bar__label">
-              <span>{i.emoji} {i.label}</span>
-              <span className="indicator-bar__value">{i.value}%</span>
-            </div>
-            <div className="indicator-bar__track">
-              <div className="indicator-bar__fill" style={{ width: `${i.value}%`, background: i.color, '--fill-width': `${i.value}%` } as React.CSSProperties} />
+      <div className="community-dashboard__body">
+        {/* Left Column: Radial Speedometer + Quick Stats */}
+        <div className="community-dashboard__summary">
+          <div className="civic-speedometer">
+            <svg viewBox="0 0 100 62" className="speedometer-svg">
+              <defs>
+                <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#f59e0b" />
+                  <stop offset="50%" stopColor="#10b981" />
+                  <stop offset="100%" stopColor="#059669" />
+                </linearGradient>
+              </defs>
+              {/* Background Arc */}
+              <path
+                d="M 10 50 A 40 40 0 0 1 90 50"
+                fill="none"
+                stroke="var(--border-light)"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              {/* Progress Filled Arc */}
+              <path
+                d="M 10 50 A 40 40 0 0 1 90 50"
+                fill="none"
+                stroke="url(#gaugeGradient)"
+                strokeWidth="8"
+                strokeDasharray={arcLength}
+                strokeDashoffset={strokeOffset}
+                strokeLinecap="round"
+                className="speedometer-arc"
+              />
+            </svg>
+            <div className="speedometer-center">
+              <span className="speedometer-value">{overall}%</span>
+              <span className="speedometer-label">Civic Health</span>
             </div>
           </div>
-        ))}
-      </div>
 
-      <div className="community-dashboard__footer">
-        <div className="community-dashboard__stat">
-          <span>🏘️ Locations</span>
-          <strong>{locationProg}% improving</strong>
+          <div className="community-dashboard__quick-stats">
+            <div className="quick-stat-card">
+              <span className="quick-stat-icon">🏘️</span>
+              <div className="quick-stat-content">
+                <span className="quick-stat-label">Locations</span>
+                <strong className="quick-stat-val">{locationProg}% active</strong>
+              </div>
+            </div>
+            <div className="quick-stat-card">
+              <span className="quick-stat-icon">💰</span>
+              <div className="quick-stat-content">
+                <span className="quick-stat-label">Treasury</span>
+                <strong className="quick-stat-val">{state.community.resources}% funds</strong>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="community-dashboard__stat">
-          <span>💰 Resources</span>
-          <strong>{state.community.resources}%</strong>
+
+        {/* Right Column: 6 Civic Indicators in a Sleek 2-Column Grid */}
+        <div className="community-dashboard__indicators">
+          {indicators.map(i => (
+            <div key={i.label} className="indicator-bar">
+              <div className="indicator-bar__label">
+                <span>{i.emoji} {i.label}</span>
+                <span className="indicator-bar__value">{i.value}%</span>
+              </div>
+              <div className="indicator-bar__track">
+                <div className="indicator-bar__fill" style={{ width: `${i.value}%`, background: i.color, '--fill-width': `${i.value}%` } as React.CSSProperties} />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

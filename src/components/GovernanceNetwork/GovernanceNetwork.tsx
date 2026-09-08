@@ -131,8 +131,9 @@ export default function GovernanceNetwork() {
         </div>
       </div>
 
-      {/* Interactive Circular Network Diagram */}
-      <div className="network-canvas-wrapper">
+      <div className="governance-network__body">
+        {/* Interactive Circular Network Diagram */}
+        <div className="network-canvas-wrapper">
         <svg className="governance-network__svg" viewBox="0 0 240 236">
           <defs>
             {/* Glow Filter for Active Nodes */}
@@ -320,8 +321,31 @@ export default function GovernanceNetwork() {
 
         <div className="node-detail-card__footer">
           <span className="ncert-tag">📚 {detail.ncertConcept}</span>
-          <span className="interactive-hint">💡 Tap any node above to inspect its civic purpose</span>
+          <span className="interactive-hint">💡 {isHindi ? 'किसी भी नोड पर टैप करें' : 'Tap any node on the left or quick-steps below'}</span>
         </div>
+
+        {/* Quick-Step Interactive Bar */}
+        <div className="node-step-switcher" role="tablist" aria-label="Quick jump to step">
+          {nodes.map(n => {
+            const d = NODE_DETAILS[n.id];
+            const isCur = selectedNodeId === n.id;
+            return (
+              <button
+                key={n.id}
+                type="button"
+                role="tab"
+                aria-selected={isCur}
+                className={`node-step-chip ${isCur ? 'node-step-chip--active' : ''} ${n.activated ? 'node-step-chip--live' : ''}`}
+                onClick={() => setSelectedNodeId(n.id)}
+                title={`${d?.stepNumber}. ${n.label}`}
+              >
+                <span className="node-step-chip__num">{d?.stepNumber}</span>
+                <span className="node-step-chip__emoji">{n.emoji}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
       </div>
     </div>
   );
