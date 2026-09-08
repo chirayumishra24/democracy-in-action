@@ -13,6 +13,7 @@
   flex: 1;
   gap: var(--space-md);
   padding: var(--space-md);
+  padding-bottom: 72px;
   max-width: 1600px;
   margin: 0 auto;
   width: 100%;

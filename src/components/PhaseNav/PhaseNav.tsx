@@ -24,8 +24,10 @@ export default function PhaseNav() {
               title={isUnlocked ? `Go to ${p.title}` : 'Complete previous phases first'}
             >
               <span className="phase-nav__emoji" aria-hidden="true">{isCompleted ? '✅' : p.emoji}</span>
-              <span className="phase-nav__label">{p.title}</span>
-              <span className="phase-nav__sub">{p.subtitle}</span>
+              <div className="phase-nav__text-col">
+                <span className="phase-nav__label">{p.title}</span>
+                <span className="phase-nav__sub">{p.subtitle}</span>
+              </div>
             </button>
           );
         })}
