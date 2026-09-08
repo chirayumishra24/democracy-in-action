@@ -1,4 +1,3 @@
-import React from 'react';
 import './TreasurySimulator.css';
 
 interface Need {

@@ -270,8 +270,6 @@ export default function ChallengeCard({ challenge, onComplete }: Props) {
     dispatch({ type: 'USE_CHALLENGE', id: challenge.id });
   };
 
-  const resourceTotal = Object.values(distribution).reduce((s, v) => s + v, 0);
-
   return (
     <div className={`challenge-card ${answered ? (isCorrect ? 'challenge-card--correct' : 'challenge-card--incorrect') : ''}`}>
       {/* Header */}

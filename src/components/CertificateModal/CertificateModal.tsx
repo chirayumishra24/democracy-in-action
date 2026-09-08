@@ -1,4 +1,3 @@
-import React from 'react';
 import { useGame } from '../../state/gameStore';
 import './CertificateModal.css';
 

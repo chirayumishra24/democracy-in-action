@@ -37,7 +37,7 @@ export default function PhaseNav() {
 }
 
 function isAdjacentUnlocked(phaseId: string, current: string, completed: string[]): boolean {
-  const order = phases.map(p => p.id);
+  const order: string[] = phases.map(p => p.id);
   const currentIdx = order.indexOf(current);
   const targetIdx = order.indexOf(phaseId);
   if (targetIdx <= 0) return true;

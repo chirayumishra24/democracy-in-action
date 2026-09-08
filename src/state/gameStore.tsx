@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react';
 import type {
   GameState, GameAction, TokenState, CommunityState,
   LocationId, LocationState, CommunityIndicators, NetworkState,
-  NetworkNode, GovernancePhase, GameSettings,
+  NetworkNode, GameSettings,
 } from '../types/game';
 
 /* ─ Defaults ─ */
