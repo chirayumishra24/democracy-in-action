@@ -1,55 +1,251 @@
 .governance-network {
   background: var(--surface);
   border-radius: var(--radius-lg);
-  padding: var(--space-md);
+  padding: 1.25rem;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
+/* ─── Header ─── */
 .governance-network__header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-sm);
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .governance-network__header h3 {
-  font-size: var(--text-base);
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 2px;
+  color: var(--text);
 }
 
-.governance-network__progress {
-  font-size: var(--text-sm);
+.governance-network__subtitle {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.governance-network__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  padding: 2px 8px;
+  flex-shrink: 0;
+}
+
+.network-progress-number {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #15803d;
+  line-height: 1;
+}
+
+.network-progress-label {
+  font-size: 0.62rem;
+  color: #166534;
+  text-transform: uppercase;
   font-weight: 700;
-  color: var(--primary-light);
+  letter-spacing: 0.3px;
+}
+
+/* ─── SVG Canvas ─── */
+.network-canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 0;
 }
 
 .governance-network__svg {
   width: 100%;
-  max-height: 200px;
+  max-width: 320px;
+  height: auto;
+  overflow: visible;
 }
 
-.network-line--animated {
-  animation: networkConnect 0.8s var(--ease-out);
+/* Center Hub */
+.center-hub-circle {
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.05));
+  cursor: pointer;
 }
 
-.network-node--active circle {
-  filter: drop-shadow(0 0 4px var(--primary-lighter));
+.network-center-hub:hover .center-hub-circle {
+  stroke: var(--primary);
+  stroke-width: 2.5;
 }
 
-.network-circle--active {
-  animation: nodeGlow 2s ease-in-out infinite;
+/* Nodes */
+.network-node-group {
+  transition: transform 0.2s ease;
 }
 
+.network-node-group:hover {
+  transform: scale(1.08);
+}
+
+.network-node-circle {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
+}
+
+.network-node--active .network-node-circle {
+  animation: nodePulse 2.5s infinite ease-in-out;
+}
+
+.node-selection-ring {
+  animation: rotateSelection 4s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes rotateSelection {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 24; }
+}
+
+@keyframes nodePulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.9));
+  }
+}
+
+.network-node-label {
+  font-family: var(--font-display);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.2px;
+}
+
+/* Pulse Lines */
 .network-pulse-flow {
-  animation: networkFlow 1.6s linear infinite;
+  animation: networkPulseTravel 1.4s linear infinite;
   filter: drop-shadow(0 0 3px #10b981);
 }
 
-@keyframes networkFlow {
+@keyframes networkPulseTravel {
   from {
     stroke-dashoffset: 32;
   }
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* ─── Node Detail Description Card ─── */
+.node-detail-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.node-detail-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.node-detail-card__step-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary);
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.node-status-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.node-status-pill--active {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+.node-status-pill--pending {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+.node-detail-card__title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+}
+
+.node-detail-card__desc {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #334155;
+  margin: 0;
+}
+
+.node-detail-card__role {
+  background: #ffffff;
+  border-left: 3px solid #3b82f6;
+  border-radius: 0 6px 6px 0;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: #1e293b;
+}
+
+.node-detail-card__role strong {
+  color: #1d4ed8;
+}
+
+.node-detail-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+  padding-top: 4px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.ncert-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.interactive-hint {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .governance-network { padding: 0.85rem; }
+  .governance-network__svg { max-width: 260px; }
+  .node-detail-card { padding: 0.75rem; }
 }
