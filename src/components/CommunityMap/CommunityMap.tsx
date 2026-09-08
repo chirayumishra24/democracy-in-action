@@ -11,17 +11,17 @@ interface Props {
 }
 
 const mapPositions: Record<LocationId, { x: number; y: number }> = {
-  homes: { x: 12, y: 30 },
-  school: { x: 28, y: 18 },
-  water: { x: 50, y: 12 },
-  health: { x: 72, y: 18 },
-  road: { x: 40, y: 45 },
-  market: { x: 60, y: 42 },
-  publicSpace: { x: 20, y: 60 },
-  panchayatOffice: { x: 50, y: 55 },
-  gramSabha: { x: 50, y: 75 },
-  farms: { x: 85, y: 55 },
-  transport: { x: 85, y: 30 },
+  homes: { x: 13, y: 22 },
+  school: { x: 28, y: 15 },
+  publicSpace: { x: 16, y: 64 },
+  road: { x: 33, y: 44 },
+  water: { x: 49, y: 13 },
+  panchayatOffice: { x: 50, y: 46 },
+  market: { x: 67, y: 40 },
+  gramSabha: { x: 47, y: 76 },
+  health: { x: 74, y: 18 },
+  transport: { x: 88, y: 26 },
+  farms: { x: 84, y: 64 },
 };
 
 export default function CommunityMap({ onLocationClick, highlightLocations, interactive = true }: Props) {
@@ -29,23 +29,6 @@ export default function CommunityMap({ onLocationClick, highlightLocations, inte
 
   return (
     <div className="community-map" role="img" aria-label="Map of Sunderpur community">
-      {/* Sky gradient */}
-      <div className="community-map__sky" />
-
-      {/* Ground */}
-      <div className="community-map__ground" />
-
-      {/* Roads */}
-      <svg className="community-map__roads" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <path d="M 12 30 Q 25 35 40 45" stroke="var(--map-road)" strokeWidth="1.5" fill="none" opacity="0.5" strokeDasharray="3,2" />
-        <path d="M 28 18 Q 35 30 40 45" stroke="var(--map-road)" strokeWidth="1.5" fill="none" opacity="0.5" strokeDasharray="3,2" />
-        <path d="M 40 45 L 60 42" stroke="var(--map-road)" strokeWidth="2" fill="none" opacity="0.6" />
-        <path d="M 50 55 L 50 75" stroke="var(--map-road)" strokeWidth="2" fill="none" opacity="0.6" />
-        <path d="M 40 45 Q 45 50 50 55" stroke="var(--map-road)" strokeWidth="1.5" fill="none" opacity="0.5" />
-        <path d="M 60 42 Q 72 48 85 55" stroke="var(--map-road)" strokeWidth="1.5" fill="none" opacity="0.5" strokeDasharray="3,2" />
-        <path d="M 72 18 Q 80 25 85 30" stroke="var(--map-road)" strokeWidth="1.5" fill="none" opacity="0.5" strokeDasharray="3,2" />
-        <path d="M 50 12 Q 50 30 50 55" stroke="var(--map-water)" strokeWidth="1" fill="none" opacity="0.3" strokeDasharray="2,3" />
-      </svg>
 
       {/* Location markers */}
       {locations.map(loc => {
