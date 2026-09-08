@@ -132,6 +132,25 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Smart Board & Large Display Scaling (1080p / 2K / 4K IFP) ─── */
+@media (min-width: 1536px) {
+  html {
+    font-size: 18px; /* Scales all rem tokens for 65"+ interactive flat panels */
+  }
+}
+
+@media (min-width: 2000px) {
+  html {
+    font-size: 21px; /* Scales all rem tokens for 4K classroom smart boards */
+  }
+}
+
+/* Touch & Smart Board Stylus Responsiveness */
+button, input, select, a, [role="button"], .network-node-group {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--bg);

@@ -137,3 +137,25 @@
     font-size: 1rem;
   }
 }
+
+/* ─── Smart Board & Large Interactive Classroom Displays (65"+ IFP) ─── */
+@media (min-width: 1400px) {
+  .phase-nav {
+    bottom: 18px;
+    padding: 6px 10px;
+    border-width: 2px;
+  }
+  .phase-nav__item {
+    padding: 7px 16px;
+    gap: 9px;
+  }
+  .phase-nav__label {
+    font-size: 0.88rem;
+  }
+  .phase-nav__sub {
+    font-size: 11px;
+  }
+  .phase-nav__emoji {
+    font-size: 1.3rem;
+  }
+}

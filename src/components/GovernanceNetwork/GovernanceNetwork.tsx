@@ -231,6 +231,15 @@ export default function GovernanceNetwork() {
                 onClick={() => setSelectedNodeId(n.id)}
                 style={{ cursor: 'pointer' }}
               >
+                {/* Expanded Invisible Hit Target for Touch Screens & Smart Boards */}
+                <circle
+                  cx={coord.cx}
+                  cy={coord.cy}
+                  r="25"
+                  fill="transparent"
+                  className="smart-board-touch-target"
+                />
+
                 {/* Selection Halo Ring */}
                 {isSelected && (
                   <circle

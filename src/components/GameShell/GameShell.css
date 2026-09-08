@@ -57,3 +57,26 @@
     gap: var(--space-sm);
   }
 }
+
+/* ─── Smart Board & Large Interactive Classroom Displays (65"+ IFP) ─── */
+@media (min-width: 1536px) {
+  .game-body {
+    max-width: 1750px;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    padding-bottom: 85px;
+  }
+  .game-sidebar {
+    width: 280px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .game-body {
+    max-width: 1980px;
+    padding-bottom: 95px;
+  }
+  .game-sidebar {
+    width: 320px;
+  }
+}
