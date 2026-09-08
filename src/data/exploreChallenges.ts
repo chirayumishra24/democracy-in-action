@@ -1,0 +1,148 @@
+import type { ExploreChallenge } from '../types/game';
+
+export const exploreChallenges: ExploreChallenge[] = [
+  {
+    id: 'exp-1', phase: 'explore', type: 'explore', difficulty: 'easy', points: 5, tokenReward: 'participation',
+    title: 'School Road Investigation', prompt: 'Explore the area near the school and find out what needs attention.',
+    location: 'school', learningGoal: 'Investigate before deciding', ibSkill: 'Inquirer',
+    hint: 'Look at how children travel to school.',
+    evidence: [
+      { id: 'e1', text: 'The path near the school is uneven and difficult to walk on.', emoji: '🚧' },
+      { id: 'e2', text: 'During rains, puddles form and children have to walk around them.', emoji: '🌧️' },
+      { id: 'e3', text: 'A teacher mentioned that some children arrive late because of the road.', emoji: '👩‍🏫' },
+    ],
+    question: 'Based on the evidence, what should the community do first?',
+    options: [
+      { id: 'a', label: 'Discuss the problem with the community before deciding', correct: true, feedback: 'Good thinking! Community problems deserve community discussion before action.' },
+      { id: 'b', label: 'Build a completely new road immediately', correct: false, feedback: 'A full rebuild might not be needed — understanding the problem helps choose the right solution.' },
+      { id: 'c', label: 'Tell children to find a different route', correct: false, feedback: 'This doesn\'t solve the problem — it just moves it.' },
+      { id: 'd', label: 'Wait until someone else fixes it', correct: false, feedback: 'Active communities don\'t wait — they identify issues and work together.' },
+    ],
+  },
+  {
+    id: 'exp-2', phase: 'explore', type: 'explore', difficulty: 'easy', points: 5, tokenReward: 'participation',
+    title: 'Water Supply Check', prompt: 'Investigate the community water supply and find what people are experiencing.',
+    location: 'water', learningGoal: 'Gather information from multiple sources', ibSkill: 'Inquirer',
+    hint: 'Think about who depends on water most.',
+    evidence: [
+      { id: 'e1', text: 'Water flows only at certain times of the day.', emoji: '💧' },
+      { id: 'e2', text: 'Some families have to store water because supply is unpredictable.', emoji: '🪣' },
+      { id: 'e3', text: 'The farmer says crops are suffering due to water irregularity.', emoji: '🌾' },
+    ],
+    question: 'What is the most important thing to understand before solving this?',
+    options: [
+      { id: 'a', label: 'Why the water supply is irregular', correct: true, feedback: 'Finding the root cause is key to a lasting solution.' },
+      { id: 'b', label: 'Who to blame for the problem', correct: false, feedback: 'Blame doesn\'t solve problems — understanding the cause does.' },
+      { id: 'c', label: 'Nothing — just build a new supply', correct: false, feedback: 'Building without understanding the cause might waste resources.' },
+      { id: 'd', label: 'Whether water is important', correct: false, feedback: 'Water is clearly essential — the question is how to fix the supply issue.' },
+    ],
+  },
+  {
+    id: 'exp-3', phase: 'explore', type: 'explore', difficulty: 'medium', points: 10, tokenReward: 'participation',
+    title: 'Health Centre Visit', prompt: 'Visit the health centre and understand the challenges it faces.',
+    location: 'health', learningGoal: 'Listen to people directly affected', ibSkill: 'Caring',
+    hint: 'Ask the people who work there.',
+    evidence: [
+      { id: 'e1', text: 'The health worker says they sometimes run out of basic supplies.', emoji: '💊' },
+      { id: 'e2', text: 'A parent mentions travelling far when the centre cannot help.', emoji: '🚗' },
+      { id: 'e3', text: 'The centre serves many families but has limited resources.', emoji: '🏥' },
+    ],
+    question: 'Who should be involved in finding a solution for the health centre?',
+    options: [
+      { id: 'a', label: 'Health workers, community members, and governance representatives', correct: true, feedback: 'Including all stakeholders leads to solutions that actually work.' },
+      { id: 'b', label: 'Only the health worker', correct: false, feedback: 'The health worker knows the problem, but solutions need broader support.' },
+      { id: 'c', label: 'Only people from outside the community', correct: false, feedback: 'Local voices must be part of the solution.' },
+      { id: 'd', label: 'Nobody — it will fix itself', correct: false, feedback: 'Community challenges need active participation to resolve.' },
+    ],
+  },
+  {
+    id: 'exp-4', phase: 'explore', type: 'explore', difficulty: 'medium', points: 10, tokenReward: 'participation',
+    title: 'Market Investigation', prompt: 'Explore the market area and find out how drainage issues affect the community.',
+    location: 'market', learningGoal: 'Understand how an issue affects different people differently',
+    hint: 'Think about who uses the market and when problems are worst.',
+    evidence: [
+      { id: 'e1', text: 'During monsoon, water collects in the market area.', emoji: '🌊' },
+      { id: 'e2', text: 'Vendors lose goods when their stalls flood.', emoji: '📦' },
+      { id: 'e3', text: 'Customers avoid the market on rainy days.', emoji: '🧑' },
+    ],
+    question: 'How does this issue connect to other parts of the community?',
+    options: [
+      { id: 'a', label: 'Farmers can\'t sell produce → less income → affects families', correct: true, feedback: 'You traced the chain of effects — this is systems thinking!' },
+      { id: 'b', label: 'It only affects shopkeepers', correct: false, feedback: 'The market connects to farms, transport, and family incomes.' },
+      { id: 'c', label: 'It has no connection to anything else', correct: false, feedback: 'In a community, most issues are interconnected.' },
+      { id: 'd', label: 'Only rain is the problem', correct: false, feedback: 'Rain is natural — the issue is drainage and infrastructure.' },
+    ],
+  },
+  {
+    id: 'exp-5', phase: 'explore', type: 'explore', difficulty: 'easy', points: 5, tokenReward: 'participation',
+    title: 'Community Space Exploration', prompt: 'Visit the public park and understand how the community uses this space.',
+    location: 'publicSpace', learningGoal: 'Observe how different groups use shared spaces',
+    hint: 'Different people use the space for different things.',
+    evidence: [
+      { id: 'e1', text: 'Children play here after school.', emoji: '⚽' },
+      { id: 'e2', text: 'Elderly community members sit and talk in the shade.', emoji: '🌳' },
+      { id: 'e3', text: 'Community events and meetings sometimes happen here.', emoji: '🎪' },
+    ],
+    question: 'Why is a public space important for a community?',
+    options: [
+      { id: 'a', label: 'It brings different people together and builds community bonds', correct: true, feedback: 'Shared spaces are where communities connect and grow stronger.' },
+      { id: 'b', label: 'It is just empty land with no purpose', correct: false, feedback: 'Public spaces serve many important social functions.' },
+      { id: 'c', label: 'Only children need play areas', correct: false, feedback: 'All community members benefit from shared public spaces.' },
+      { id: 'd', label: 'It should be sold to the highest bidder', correct: false, feedback: 'Public spaces belong to the community and serve everyone.' },
+    ],
+  },
+  {
+    id: 'exp-6', phase: 'explore', type: 'explore', difficulty: 'medium', points: 10, tokenReward: 'participation',
+    title: 'Panchayat Office Discovery', prompt: 'Visit the Panchayat Office and learn how local governance works.',
+    location: 'panchayatOffice', learningGoal: 'Understand the role of local governance bodies', ibSkill: 'Thinker',
+    hint: 'Think about what happens between identifying a problem and solving it.',
+    evidence: [
+      { id: 'e1', text: 'Community decisions and plans are discussed here.', emoji: '📋' },
+      { id: 'e2', text: 'Representatives from the community meet to prioritise issues.', emoji: '👥' },
+      { id: 'e3', text: 'Records of past decisions and projects are maintained.', emoji: '📂' },
+    ],
+    question: 'What is the purpose of a local governance body?',
+    options: [
+      { id: 'a', label: 'To represent the community, make decisions, and ensure implementation', correct: true, feedback: 'Governance connects people\'s needs to action through organised decision-making.' },
+      { id: 'b', label: 'To make decisions without asking anyone', correct: false, feedback: 'Good governance includes listening to the community.' },
+      { id: 'c', label: 'To collect money only', correct: false, feedback: 'Governance involves much more — planning, deciding, implementing, and reviewing.' },
+      { id: 'd', label: 'It has no real purpose', correct: false, feedback: 'Local governance is essential for community development and problem-solving.' },
+    ],
+  },
+  {
+    id: 'exp-7', phase: 'explore', type: 'explore', difficulty: 'hard', points: 15, tokenReward: 'participation',
+    title: 'Connected Issues', prompt: 'Look at Sunderpur as a whole. How do different issues connect to each other?',
+    location: 'farms', learningGoal: 'See the community as an interconnected system', ibSkill: 'Thinker',
+    hint: 'Follow the chain: water → farms → market → transport → economy.',
+    evidence: [
+      { id: 'e1', text: 'Water supply affects farms, health, and homes.', emoji: '💧' },
+      { id: 'e2', text: 'Roads connect farms to markets and people to health services.', emoji: '🛣️' },
+      { id: 'e3', text: 'When one area improves, others often benefit too.', emoji: '🔗' },
+    ],
+    question: 'What does it mean to think about a community as a system?',
+    options: [
+      { id: 'a', label: 'Changes in one area affect other areas — everything is connected', correct: true, feedback: 'Systems thinking helps make decisions that consider the bigger picture.' },
+      { id: 'b', label: 'Each problem exists independently', correct: false, feedback: 'In reality, community issues are deeply interconnected.' },
+      { id: 'c', label: 'Only one problem matters at a time', correct: false, feedback: 'Multiple issues can be connected and may need to be addressed together.' },
+      { id: 'd', label: 'Systems thinking is too complicated for communities', correct: false, feedback: 'Communities naturally think in systems — when water fails, everything is affected.' },
+    ],
+  },
+  {
+    id: 'exp-8', phase: 'explore', type: 'explore', difficulty: 'easy', points: 5, tokenReward: 'participation',
+    title: 'Transport Check', prompt: 'Investigate the transport situation in Sunderpur.',
+    location: 'transport', learningGoal: 'Understand how services connect to daily life',
+    hint: 'Think about who needs transport and why.',
+    evidence: [
+      { id: 'e1', text: 'A bus comes only a few times a day.', emoji: '🚌' },
+      { id: 'e2', text: 'Students travelling to higher schools need transport.', emoji: '🎓' },
+      { id: 'e3', text: 'The health centre sometimes sends patients to the town hospital.', emoji: '🏥' },
+    ],
+    question: 'What should the community consider when thinking about transport improvements?',
+    options: [
+      { id: 'a', label: 'Who needs transport, when, and for what purposes', correct: true, feedback: 'Understanding needs helps design solutions that serve the most people.' },
+      { id: 'b', label: 'Only adult commuters matter', correct: false, feedback: 'Students, patients, and many others also need transport.' },
+      { id: 'c', label: 'Transport is not a community issue', correct: false, feedback: 'Transport connects people to education, health, and livelihood opportunities.' },
+      { id: 'd', label: 'Everyone should just walk', correct: false, feedback: 'Walking is not always possible — distances, health, and weather all matter.' },
+    ],
+  },
+];

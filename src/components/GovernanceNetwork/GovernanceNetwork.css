@@ -1,0 +1,41 @@
+.governance-network {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.governance-network__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.governance-network__header h3 {
+  font-size: var(--text-base);
+}
+
+.governance-network__progress {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--primary-light);
+}
+
+.governance-network__svg {
+  width: 100%;
+  max-height: 200px;
+}
+
+.network-line--animated {
+  animation: networkConnect 0.8s var(--ease-out);
+}
+
+.network-node--active circle {
+  filter: drop-shadow(0 0 4px var(--primary-lighter));
+}
+
+.network-circle--active {
+  animation: nodeGlow 2s ease-in-out infinite;
+}
